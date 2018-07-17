@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-1.11.1.js"></script>
+    <script src="move.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li,ul{
+            list-style: none;
+        }
+        #container{
+            width: 670px;
+            height: 240px;
+            margin: 100px auto;   
+            position: relative; 
+            overflow: hidden;
+        }
+        ul{
+            position: relative; 
+            width: 600%;
+        }
+        ul  li{
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        ol{
+            width: 200px;
+            height: 30px;
+            position: absolute;
+            top:200px;
+            left:500px;
+        }
+        .arrow{
+            width: 100%;
+            height: 30px;
+            display: none;
+            margin-top: -15px;
+            position: absolute;
+            top:50%;
+            z-index: 15;
+
+        }
+        .arrow span{
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            background: black;
+            color: white;
+            cursor: pointer;
+            z-index: 9999;
+        }
+        .arrow span:first-of-type{
+            float: left;
+        }
+        .arrow span:last-of-type{
+            float:right;
+        }
+        ol li{
+           
+            width: 20px;
+            text-align: center;
+            line-height: 20px;
+            border-radius: 50%;
+            background: black;
+            color: white;
+            float: left;
+            margin-right: 10px;   
+        }
+        ol li.current{
+            background: orangered;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <ul>
+            <li style= "z-index : 6"><img src="img/2.jpg"></li>
+            <li style= "z-index : 5"><img src="img/3.jpg"></li>
+            <li style= "z-index : 4"><img src="img/4.jpg"></li>
+            <li style= "z-index : 3"><img src="img/5.jpg"></li>
+            <li style= "z-index : 2"><img src="img/6.jpg"></li>
+            <li style= "z-index : 1"><img src="img/2.jpg"></li>
+        </ul>
+        <div class="arrow">
+            <span class="left"><</span>
+            <span class="right">></span>
+        </div>
+        <ol style="z-index:10">
+            <li class="current">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ol>
+    </div>
+    <script>
+        var timer = setInterval(autoPlay,1500);
+        var $olist = $("ol li");
+        var index = 0;
+        var $ulist = $("ul li");
+        var $container = $("#container")
+        var $arrow = $(".arrow")
+        var $arrowl = $(".arrow").find(".left");
+        var $arrowr = $(".arrow").find(".right");
+        
+        function autoPlay(){
+            index ++;
+            //判断最大下标
+            if(index == $olist.size()){
+                index = 0;
+            }
+            //让ol对应的文字高亮显示
+            $olist.eq(index).addClass("current").siblings().removeClass("current");
+            //让ul里面对应的图片显示
+            $ulist.eq(index).fadeIn(1500).siblings().fadeOut(1500);
+
+        }
+            
+        $container.mouseenter(function(){
+                //停止定时器
+            clearInterval(timer);
+            $arrow.show();     
+        })
+        $container.mouseleave(function(){
+            //启动定时器
+            timer = setInterval(autoPlay,1500);
+            $arrow.hide();
+        }) 
+           //点击按钮：
+        $arrowl.click(function(){
+        // alert(1);
+                if(index == 0){
+                    index = $ulist.length-2;
+                    console.log(index);
+                }else{
+                    index --;
+                    console.log(index); 
+                } 
+                $ulist.eq(index).fadeIn(1500).siblings().fadeOut(1500);
+                $olist.eq(index).addClass("current").siblings().removeClass("current");
+        })
+        $arrowr.click(function(){
+            // alert(1);
+            if(index == $ulist.size()-2){
+                index = 0;
+                console.log(index);
+            }else{
+                index++;
+                console.log(index);
+            } 
+            
+            $ulist.eq(index).fadeIn(1500).siblings().fadeOut(1500);
+            $olist.eq(index).addClass("current").siblings().removeClass("current");
+            
+        })   
+        
+   
+
+    
+       
+    </script>
+</body>
+</html>

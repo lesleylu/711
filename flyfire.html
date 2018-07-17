@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-1.11.1.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 100%;
+            height: 100%;
+            background: url(img/bg.jpg) no-repeat;
+            position: fixed;
+            background-size: cover;
+           
+        }
+        div img{
+            width: 18px;
+            height: 18px;
+            position: absolute;    
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="wrap">
+       
+    </div>
+    <script>
+       //思路： 先建一个模板；
+    // function Snow(){ //构造函数
+        
+    // }
+    
+    // Snow.prototype = {
+    //     init:function(){//初始化
+    //         this.ele = $("<img src = 'img/1.jpg'>");  
+    //         return this;
+    //     },
+    //     show:function(){//显示
+    //         $("#wrap").append(this.ele); //把动态创建图片添加到body上；
+    //         return this;
+    //     },
+    //     snowFly:function(){//运动
+    //         var coord = this.randPosition();
+    //         var that = this;
+    //         this.ele.animate(coord,Math.random()*2000+1000,function(){
+    //             that.snowFly();
+    //         })
+    //     },
+    //     randPosition:function(){//随机位置
+    //         return{
+    //             left:Math.random()*($(window).width()- this.ele.width()),
+    //             top:Math.random()*($(window).height() - this.ele.height())
+    //         }
+    //     }
+       
+    // }
+    // for( let i = 10; i < 26;i++){//动态创建图片  萤火虫
+    //     new Snow().init().show().snowFly();
+    // }
+   
+       //思路： 有一个模板； 之后初始化，里面会有一张图片；并返回自己 以便链式调用；
+       // 运动就需要位置  整个页面的距离*随机数
+    //    function Snow(){//首字母大写代表构造函数
+
+    //    }
+    //    Snow.prototype = {
+    //        init:function(){
+    //            this.ele = $("<img src = 'img/1.jpg'>");
+    //            return this;
+    //        },
+    //        show:function(){
+    //            $("#wrap").append(this.ele);
+    //            return this;
+    //        },
+    //        fly:function(){
+    //            //运动 通过animate；
+    //            var coord = this.randomPosition();
+    //            var that = this;
+    //            this.ele.animate(coord,Math.random()*3000 + 2000,function(){
+    //                that.fly();
+    //            })
+    //        },
+    //        randomPosition:function(){
+    //            return {//随机left top   Math.random()
+    //                left: Math.random()*($(window).width()-this.ele.width()),
+    //                top:Math.random()*($(window).height()-this.ele.height())
+    //            }
+    //        }
+    //    }
+    //    for( var i = 0; i < 25; i++){
+    //        new Snow().init().show().fly();  //链式调用
+    //    }
+        
+
+
+        function Snow(){
+
+        }
+        Snow.prototype = {
+            init:function(){
+                this.ele = $("<img src ='img/1.jpg'>");
+                return this;
+            },
+            show:function(){
+                $("#wrap").append(this.ele);
+                return this;
+            },
+            fly:function(){
+                var coord = this.randomPosition();
+                var that = this;
+                this.ele.animate(coord,Math.random()*2000+3000,function(){
+                    that.fly();
+                })
+            },
+            randomPosition:function(){
+                return {
+                    left: Math.random()*($(window).width()-this.ele.width()),
+                    top: Math.random()*($(window).height()-this.ele.height())
+                }
+            }
+
+        }
+        for( var i = 10; i < 30; i++){
+            new Snow().init().show().fly()
+        }
+      
+    </script>
+</body>
+</html>

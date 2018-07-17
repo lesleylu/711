@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src = "jquery-1.11.1.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            width: 200px;
+            height: 200px;
+            background: pink;
+            margin: 100px auto;
+        }
+        #btn{
+            position: absolute;
+            left: 0;
+            top:0;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+
+    </div>
+    <button id="btn">按钮</button>
+    <script>
+      //  $("#box").hide(5000).show(4000);
+        // $("#box").toggle(5000,function(){
+        //    document.write("切换");
+        // })
+
+        //$("#box").slideUp(3000).slideDown(3000);
+      
+        // $(document).ready(function(){
+        //     $("#btn").click(function(){
+        //         $("#box").fadeToggle(4009);
+        //     })  
+        // })
+
+        // $(document).ready(function(){
+        //     $("#btn").click(function(){
+        //         $("#box").slideToggle(3000);
+        //     })
+        // })
+        // $(document).ready(function(){
+        //     $("#btn").click(function(){
+        //         $("#box").toggle(500)
+        //     })
+        // })
+            // $(document).ready(function(){
+            //     $("#btn").click(function(){
+            //         $("#box").slideUp(2000).slideDown(2000);
+            //     })
+            // })
+
+            // $(document).ready(function(){
+            //     $("#btn").click(function(){
+            //         $("#box").hide(4000).show(3000);
+            //     })
+            // })
+
+            $(document).ready(function(){
+                $("#btn").click(function(){
+                    $("#box").fadeOut(4000).fadeIn(4000);
+                })
+            })
+    
+    </script>
+</body>
+</html>
